@@ -12,4 +12,14 @@ userController.post("/users", async (req, res, next) => {
   }
 });
 
+userController.post("/login", async (req, res, next) => {
+  const { email, password } = req.body;
+  try {
+    const user = await userService.login(email, password);
+    return res.json(user);
+  } catch (error) {
+    next(error);
+  }
+});
+
 export default userController;

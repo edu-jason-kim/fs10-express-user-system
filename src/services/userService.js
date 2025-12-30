@@ -5,6 +5,11 @@ async function hashPassword(password) {
   return bcrypt.hash(password, 10);
 }
 
+async function verifyPassword(inputPassword, savedPassword) {
+  const isValid = await bcrypt.compare(inputPassword, savedPassword);
+  return isValid;
+}
+
 function filterSensitiveUserData(user) {
   const { password, ...rest } = user;
   return rest;
@@ -34,6 +39,32 @@ async function createUser(user) {
   return filterSensitiveUserData(createdUser);
 }
 
+async function login(email, password) {
+  // 1. 이메일로 유저를 조회한다.
+  const user = await userRepository.findByEmail(email);
+
+  // 2. 유저가 존재하지 않으면 에러를 반환한다.
+  if (!user) {
+    const error = new Error("Unathorized");
+    error.code = 401;
+    throw error;
+  }
+
+  // 3. 데이터베이스에 저장된 비밀번호와 입력받은 비밀번호를 비교한다.
+  const isValid = await verifyPassword(password, user.password);
+
+  // 4. 일치하지 않으면 401 에러를 반환한다.
+  if (!isValid) {
+    const error = new Error("Unathorized");
+    error.code = 401;
+    throw error;
+  }
+
+  // 5. 일치하면 유저 정보를 반환한다. (민감정보 제외)
+  return filterSensitiveUserData(user);
+}
+
 export default {
   createUser,
+  login,
 };
