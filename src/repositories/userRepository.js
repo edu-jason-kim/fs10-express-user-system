@@ -9,7 +9,7 @@ async function findById(id) {
 }
 
 async function findByEmail(email) {
-  return await prisma.User.findUnique({
+  return await prisma.user.findUnique({
     where: {
       email,
     },
