@@ -1,6 +1,7 @@
 import express from "express";
 import userService from "../services/userService.js";
 import auth from "../middlewares/auth.js";
+import passport from "../config/passport.js";
 
 const userController = express.Router();
 
@@ -13,6 +14,15 @@ userController.post("/users", async (req, res, next) => {
     next(error);
   }
 });
+
+userController.post(
+  "/session-login",
+  passport.authenticate("local"),
+  async (req, res) => {
+    const user = req.user;
+    return res.json(user);
+  }
+);
 
 // 로그인
 userController.post("/login", async (req, res, next) => {

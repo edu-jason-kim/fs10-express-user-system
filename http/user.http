@@ -33,3 +33,12 @@ Cookie: refreshToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjQsImlhdC
 # {
 #   "accessToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjQsImlhdCI6MTc2NzE0NzUxNiwiZXhwIjoxNzY3MTUxMTE2fQ.DwBLMdQb6ITX-0n_arz7355BT6fJ8Hju4OIvsY77L1A"
 # }
+
+###
+POST http://localhost:3000/session-login
+Content-Type: application/json
+
+{
+  "email": "example@email.com",
+  "password": "password123!"
+}
