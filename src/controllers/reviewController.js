@@ -2,21 +2,26 @@ import express from "express";
 
 import reviewService from "../services/reviewService.js";
 import auth from "../middlewares/auth.js";
+import passport from "../config/passport.js";
 
 const reviewController = express.Router();
 
-reviewController.post("/", auth.verifyAccessToken, async (req, res, next) => {
-  const { userId } = req.user;
-  try {
-    const createdReview = await reviewService.create({
-      ...req.body,
-      authorId: userId,
-    });
-    return res.status(201).json(createdReview);
-  } catch (error) {
-    return next(error);
+reviewController.post(
+  "/",
+  passport.authenticate("access-token", { session: false }),
+  async (req, res, next) => {
+    const userId = req.user.id;
+    try {
+      const createdReview = await reviewService.create({
+        ...req.body,
+        authorId: userId,
+      });
+      return res.status(201).json(createdReview);
+    } catch (error) {
+      return next(error);
+    }
   }
-});
+);
 
 reviewController.get("/:id", async (req, res, next) => {
   const { id } = req.params;

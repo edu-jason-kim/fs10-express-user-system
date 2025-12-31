@@ -19,19 +19,19 @@ Content-Type: application/json
 
 ### 
 POST http://localhost:3000/token/refresh
-Cookie: refreshToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjQsImlhdCI6MTc2NzE0NzUxNiwiZXhwIjoxNzY4MzU3MTE2fQ.jRiQABg-oE50cA8EU9s9KJ0shloxa6z_GosvQsU7Aqs; Path=/; HttpOnly; Secure; SameSite=None
+Cookie: refreshToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjQsImlhdCI6MTc2NzE1ODYyNywiZXhwIjoxNzY4MzY4MjI3fQ.yR5qsEBNWyBNrVmD74dISaDnrRasArijlPuG89HReq8; Path=/; HttpOnly; Secure; SameSite=None
 
 # HTTP/1.1 200 OK
 # X-Powered-By: Express
-# Set-Cookie: refreshToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjQsImlhdCI6MTc2NzE0NzUxNiwiZXhwIjoxNzY4MzU3MTE2fQ.jRiQABg-oE50cA8EU9s9KJ0shloxa6z_GosvQsU7Aqs; Path=/; HttpOnly; Secure; SameSite=None
+# Set-Cookie: refreshToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjQsImlhdCI6MTc2NzE1ODYyNywiZXhwIjoxNzY4MzY4MjI3fQ.yR5qsEBNWyBNrVmD74dISaDnrRasArijlPuG89HReq8; Path=/; HttpOnly; Secure; SameSite=None
 # Content-Type: application/json; charset=utf-8
 # Content-Length: 161
-# ETag: W/"a1-xh6NOm7thjhZkTepPuH2Ut0STFM"
-# Date: Wed, 31 Dec 2025 02:18:36 GMT
+# ETag: W/"a1-GFWaZPR56JI8FpqjOGl8v0tGXjU"
+# Date: Wed, 31 Dec 2025 05:23:47 GMT
 # Connection: close
 
 # {
-#   "accessToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjQsImlhdCI6MTc2NzE0NzUxNiwiZXhwIjoxNzY3MTUxMTE2fQ.DwBLMdQb6ITX-0n_arz7355BT6fJ8Hju4OIvsY77L1A"
+#   "accessToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjQsImlhdCI6MTc2NzE1ODYyNywiZXhwIjoxNzY3MTYyMjI3fQ.7bBKZ_oJbqm0OsYEbqCybogri-t8tzeApPCBKJntsKE"
 # }
 
 ###

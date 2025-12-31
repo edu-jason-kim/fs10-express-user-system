@@ -1,9 +1,12 @@
 import passport from "passport";
 import localStrategy from "../middlewares/passport/localStrategy.js";
+import jwtStrategy from "../middlewares/passport/jwtStrategy.js";
 import userRepository from "../repositories/userRepository.js";
 
 // passport 설정들
 passport.use("local", localStrategy);
+passport.use("access-token", jwtStrategy.accessTokenStrategy);
+passport.use("refresh-token", jwtStrategy.refreshTokenStrategy);
 
 // session에 user id를 저장하는 과정
 passport.serializeUser((user, done) => {

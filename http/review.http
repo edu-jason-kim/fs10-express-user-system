@@ -1,6 +1,6 @@
 POST http://localhost:3000/reviews
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjMsImlhdCI6MTc2NzE0NTAwOSwiZXhwIjoxNzY3MTQ4NjA5fQ.cMPO-GGAprnY7DabHmrujk6_8ixeh4EGbW94x0VB87c
+Authorization: Bearer xxx
 
 {
   "productId": 1,

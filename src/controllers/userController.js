@@ -55,10 +55,10 @@ userController.post("/login", async (req, res, next) => {
 
 userController.post(
   "/token/refresh",
-  auth.verifyRefreshToken,
+  passport.authenticate("refresh-token", { session: false }),
   async (req, res, next) => {
     try {
-      const userId = req.auth.userId;
+      const userId = req.user.id;
       const refreshToken = req.cookies.refreshToken;
       const { accessToken, newRefreshToken } = await userService.refreshToken(
         userId,
