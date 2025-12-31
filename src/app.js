@@ -5,11 +5,19 @@ import productController from "./controllers/productController.js";
 import reviewController from "./controllers/reviewController.js";
 import userController from "./controllers/userController.js";
 import errorHandler from "./middlewares/errorHandler.js";
+import session from "express-session";
 
 const app = express();
 
 app.use(express.json());
 app.use(cookieParser());
+app.use(
+  session({
+    secret: process.env.SESSION_SECRET,
+    resave: false,
+    saveUninitialized: false,
+  })
+);
 
 app.use("", userController);
 app.use("/products", productController);

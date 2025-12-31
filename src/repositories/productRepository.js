@@ -12,7 +12,6 @@ async function save(product) {
   return await prisma.product.create({
     data: {
       name: product.name,
-      description: product.description,
       price: parseInt(product.price, 10),
     },
   });

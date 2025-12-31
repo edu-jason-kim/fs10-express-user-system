@@ -1,0 +1,8 @@
+POST http://localhost:3000/products
+Content-Type: application/json
+Cookie: connect.sid=s%3AkBKONdCoK2opQsGudqaCu-FW69mW6nm_.kVKR2NBIG03N5wX2lmpoGlZF%2F6XPAU1kjBXvjC3VfbY; Path=/; HttpOnly
+
+{
+  "name": "바람막이",
+  "price": "119000"
+}
