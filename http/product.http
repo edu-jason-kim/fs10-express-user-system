@@ -1,6 +1,7 @@
 POST http://localhost:3000/products
 Content-Type: application/json
-Cookie: connect.sid=s%3AkBKONdCoK2opQsGudqaCu-FW69mW6nm_.kVKR2NBIG03N5wX2lmpoGlZF%2F6XPAU1kjBXvjC3VfbY; Path=/; HttpOnly
+# Cookie: connect.sid=s%3AkBKONdCoK2opQsGudqaCu-FW69mW6nm_.kVKR2NBIG03N5wX2lmpoGlZF%2F6XPAU1kjBXvjC3VfbY; Path=/; HttpOnly
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjMsImlhdCI6MTc2NzE0Mzk4OCwiZXhwIjoxNzY3MTQ3NTg4fQ.Vm1_YjWDvjtrpfRd54Kkq1u_OJq_NtXpzNX-sWfdwh4
 
 {
   "name": "바람막이",

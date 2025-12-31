@@ -1,5 +1,6 @@
 import userRepository from "../repositories/userRepository.js";
 import bcrypt from "bcrypt";
+import jwt from "jsonwebtoken";
 
 async function hashPassword(password) {
   return bcrypt.hash(password, 10);
@@ -13,6 +14,11 @@ async function verifyPassword(inputPassword, savedPassword) {
 function filterSensitiveUserData(user) {
   const { password, ...rest } = user;
   return rest;
+}
+
+function createToken(user) {
+  const payload = { userId: user.id };
+  return jwt.sign(payload, process.env.JWT_SECRET, { expiresIn: "1h" });
 }
 
 async function createUser(user) {
@@ -67,4 +73,5 @@ async function login(email, password) {
 export default {
   createUser,
   login,
+  createToken,
 };

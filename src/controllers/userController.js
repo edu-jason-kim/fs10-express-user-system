@@ -19,9 +19,13 @@ userController.post("/login", async (req, res, next) => {
   try {
     const user = await userService.login(email, password);
 
-    req.session.userId = user.id;
+    // Session 기반 인증
+    // req.session.userId = user.id;
+    // return res.json(user);
 
-    return res.json(user);
+    // Token 기반 인증
+    const accessToken = userService.createToken(user);
+    return res.json({ accessToken });
   } catch (error) {
     next(error);
   }
