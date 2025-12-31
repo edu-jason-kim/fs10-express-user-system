@@ -31,7 +31,10 @@ async function refreshToken(userId, refreshToken) {
     throw error;
   }
 
-  return createToken(user, "access");
+  const accessToken = createToken(user, "access");
+  const newRefreshToken = createToken(user, "refresh");
+
+  return { accessToken, newRefreshToken };
 }
 
 async function createUser(user) {
