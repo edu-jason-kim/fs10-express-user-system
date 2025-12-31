@@ -12,13 +12,14 @@ async function verifyPassword(inputPassword, savedPassword) {
 }
 
 function filterSensitiveUserData(user) {
-  const { password, ...rest } = user;
+  const { password, refreshToken, ...rest } = user;
   return rest;
 }
 
-function createToken(user) {
+function createToken(user, type) {
   const payload = { userId: user.id };
-  return jwt.sign(payload, process.env.JWT_SECRET, { expiresIn: "1h" });
+  const expiresIn = type === "refresh" ? "2w" : "1h";
+  return jwt.sign(payload, process.env.JWT_SECRET, { expiresIn });
 }
 
 async function createUser(user) {
@@ -70,8 +71,13 @@ async function login(email, password) {
   return filterSensitiveUserData(user);
 }
 
+async function updateUser(id, data) {
+  return await userRepository.update(id, data);
+}
+
 export default {
   createUser,
+  updateUser,
   login,
   createToken,
 };

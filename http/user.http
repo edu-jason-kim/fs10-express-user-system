@@ -16,3 +16,16 @@ Content-Type: application/json
   "email": "example@email.com",
   "password": "password123!"
 }
+
+# HTTP/1.1 200 OK
+# X-Powered-By: Express
+# Set-Cookie: refreshToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjQsImlhdCI6MTc2NzE0NzUxNiwiZXhwIjoxNzY4MzU3MTE2fQ.jRiQABg-oE50cA8EU9s9KJ0shloxa6z_GosvQsU7Aqs; Path=/; HttpOnly; Secure; SameSite=None
+# Content-Type: application/json; charset=utf-8
+# Content-Length: 161
+# ETag: W/"a1-xh6NOm7thjhZkTepPuH2Ut0STFM"
+# Date: Wed, 31 Dec 2025 02:18:36 GMT
+# Connection: close
+
+# {
+#   "accessToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjQsImlhdCI6MTc2NzE0NzUxNiwiZXhwIjoxNzY3MTUxMTE2fQ.DwBLMdQb6ITX-0n_arz7355BT6fJ8Hju4OIvsY77L1A"
+# }

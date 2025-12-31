@@ -24,7 +24,18 @@ userController.post("/login", async (req, res, next) => {
     // return res.json(user);
 
     // Token 기반 인증
-    const accessToken = userService.createToken(user);
+    const accessToken = userService.createToken(user, "access"); // 1h
+    const refreshToken = userService.createToken(user, "refresh"); // 2w
+    await userService.updateUser(user.id, { refreshToken });
+
+    // 방법1. Cookie를 통해 토큰 전달 (추후 브라우저로부터 Cookie를 통해 토큰 전달 받음)
+    res.cookie("refreshToken", refreshToken, {
+      httpOnly: true,
+      secure: true,
+      sameSite: "none",
+    });
+
+    // 방법2. 응답을 통해 토큰 전달 (추후 브라우저로부터 Authorization 헤더를 통해 토큰 전달 받음)
     return res.json({ accessToken });
   } catch (error) {
     next(error);
