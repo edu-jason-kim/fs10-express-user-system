@@ -1,0 +1,15 @@
+POST http://localhost:3000/reviews
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjMsImlhdCI6MTc2NzE0NTAwOSwiZXhwIjoxNzY3MTQ4NjA5fQ.cMPO-GGAprnY7DabHmrujk6_8ixeh4EGbW94x0VB87c
+
+{
+  "productId": 1,
+  "title": "너무 좋아요",
+  "description": "편하고 좋아요.",
+  "rating": 5
+}
+
+###
+
+DELETE http://localhost:3000/reviews/2
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjQsImlhdCI6MTc2NzE0NTQxMSwiZXhwIjoxNzY3MTQ5MDExfQ.KLk_sy107OfS7EBjx32Feb9m2i0FVJgvWpBh1ez1L-M

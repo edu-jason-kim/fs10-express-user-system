@@ -1,4 +1,5 @@
 import { expressjwt } from "express-jwt";
+import reviewService from "../services/reviewService.js";
 
 function verifySession(req, res, next) {
   if (!req.session.userId) {
@@ -18,7 +19,31 @@ const verifyAccessToken = expressjwt({
   requestProperty: "user",
 });
 
+async function verifyReviewAuth(req, res, next) {
+  const reviewId = req.params.id;
+  try {
+    const review = await reviewService.getById(reviewId);
+
+    if (!review) {
+      const error = new Error("Review not found");
+      error.code = 404;
+      next(error);
+    }
+
+    if (review.authorId !== req.user.userId) {
+      const error = new Error("Forbidden");
+      error.code = 403;
+      next(error);
+    }
+
+    next();
+  } catch (error) {
+    next(error);
+  }
+}
+
 export default {
   verifySession,
   verifyAccessToken,
+  verifyReviewAuth,
 };
