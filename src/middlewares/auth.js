@@ -51,9 +51,20 @@ async function verifyReviewAuth(req, res, next) {
   }
 }
 
+function passportAuthenticateSession(req, res, next) {
+  if (!req.isAuthenticated()) {
+    const error = new Error("Unauthorized");
+    error.code = 401;
+    return next(error);
+  }
+
+  next();
+}
+
 export default {
   verifySession,
   verifyReviewAuth,
   verifyAccessToken,
   verifyRefreshToken,
+  passportAuthenticateSession,
 };

@@ -5,16 +5,20 @@ import auth from "../middlewares/auth.js";
 const productController = express.Router();
 
 // 세션 기반 인증
-// productController.post("/", auth.verifySession, async (req, res, next) => {
+productController.post(
+  "/",
+  auth.passportAuthenticateSession,
+  async (req, res, next) => {
+    const createdProduct = await productService.create(req.body);
+    return res.json(createdProduct);
+  }
+);
+
+// 토큰 기반 인증
+// productController.post("/", auth.verifyAccessToken, async (req, res, next) => {
 //   const createdProduct = await productService.create(req.body);
 //   return res.json(createdProduct);
 // });
-
-// 토큰 기반 인증
-productController.post("/", auth.verifyAccessToken, async (req, res, next) => {
-  const createdProduct = await productService.create(req.body);
-  return res.json(createdProduct);
-});
 
 productController.get("/:id", async (req, res) => {
   const { id } = req.params;
