@@ -90,10 +90,21 @@ async function updateUser(id, data) {
   return await userRepository.update(id, data);
 }
 
+async function oauthCreateOrUpdate(provider, providerId, email, name) {
+  const user = await userRepository.createOrUpdate(
+    provider,
+    providerId,
+    email,
+    name
+  );
+  return filterSensitiveUserData(user);
+}
+
 export default {
   createUser,
   updateUser,
   login,
   createToken,
   refreshToken,
+  oauthCreateOrUpdate,
 };

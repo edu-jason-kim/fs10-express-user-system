@@ -80,4 +80,32 @@ userController.post(
   }
 );
 
+// 사용자에게 구글 로그인 화면 전달
+userController.get(
+  "/auth/google",
+  passport.authenticate("google", { scope: ["profile", "email"] })
+);
+
+// 구글이 로그인 종료 후 redirection 시켜주는 url
+userController.get(
+  "/auth/google/callback",
+  passport.authenticate("google"), // create or update
+  async (req, res) => {
+    const user = req.user;
+    const accessToken = userService.createToken(user, "access"); // 1h
+    const refreshToken = userService.createToken(user, "refresh"); // 2w
+    await userService.updateUser(user.id, { refreshToken });
+
+    // 방법1. Cookie를 통해 토큰 전달 (추후 브라우저로부터 Cookie를 통해 토큰 전달 받음)
+    res.cookie("refreshToken", refreshToken, {
+      httpOnly: true,
+      secure: true,
+      sameSite: "none",
+    });
+
+    // 방법2. 응답을 통해 토큰 전달 (추후 브라우저로부터 Authorization 헤더를 통해 토큰 전달 받음)
+    return res.json({ accessToken });
+  }
+);
+
 export default userController;
