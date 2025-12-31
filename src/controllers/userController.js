@@ -1,5 +1,6 @@
 import express from "express";
 import userService from "../services/userService.js";
+import auth from "../middlewares/auth.js";
 
 const userController = express.Router();
 
@@ -41,5 +42,20 @@ userController.post("/login", async (req, res, next) => {
     next(error);
   }
 });
+
+userController.post(
+  "/token/refresh",
+  auth.verifyRefreshToken,
+  async (req, res) => {
+    try {
+      const userId = req.auth.userId;
+      const refreshToken = req.cookies.refreshToken;
+      const accessToken = await userService.refreshToken(userId, refreshToken);
+      return res.json({ accessToken });
+    } catch (error) {
+      next(error);
+    }
+  }
+);
 
 export default userController;

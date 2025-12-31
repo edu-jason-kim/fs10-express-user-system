@@ -16,7 +16,16 @@ const verifyAccessToken = expressjwt({
   secret: process.env.JWT_SECRET,
   algorithms: ["HS256"],
   // request의 어떤 속성에 payload정보를 담을건지: req.user
-  requestProperty: "user",
+  requestProperty: "user", // req.user
+});
+
+const verifyRefreshToken = expressjwt({
+  secret: process.env.JWT_SECRET,
+  algorithms: ["HS256"],
+  // 토큰이 Authorization 헤더가 아닌 쿠키에 있으므로,
+  // 별도로 토큰을 가져올 수 있도록 설정을 해줘야 함
+  getToken: (req) => req.cookies.refreshToken,
+  requestProperty: "auth", // req.auth
 });
 
 async function verifyReviewAuth(req, res, next) {
@@ -44,6 +53,7 @@ async function verifyReviewAuth(req, res, next) {
 
 export default {
   verifySession,
-  verifyAccessToken,
   verifyReviewAuth,
+  verifyAccessToken,
+  verifyRefreshToken,
 };

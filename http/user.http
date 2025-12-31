@@ -17,6 +17,10 @@ Content-Type: application/json
   "password": "password123!"
 }
 
+### 
+POST http://localhost:3000/token/refresh
+Cookie: refreshToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjQsImlhdCI6MTc2NzE0NzUxNiwiZXhwIjoxNzY4MzU3MTE2fQ.jRiQABg-oE50cA8EU9s9KJ0shloxa6z_GosvQsU7Aqs; Path=/; HttpOnly; Secure; SameSite=None
+
 # HTTP/1.1 200 OK
 # X-Powered-By: Express
 # Set-Cookie: refreshToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjQsImlhdCI6MTc2NzE0NzUxNiwiZXhwIjoxNzY4MzU3MTE2fQ.jRiQABg-oE50cA8EU9s9KJ0shloxa6z_GosvQsU7Aqs; Path=/; HttpOnly; Secure; SameSite=None

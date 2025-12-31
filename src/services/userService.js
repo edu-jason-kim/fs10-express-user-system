@@ -22,6 +22,18 @@ function createToken(user, type) {
   return jwt.sign(payload, process.env.JWT_SECRET, { expiresIn });
 }
 
+async function refreshToken(userId, refreshToken) {
+  const user = await userRepository.findById(userId);
+
+  if (user.refreshToken !== refreshToken) {
+    const error = new Error("Unauthorized");
+    error.code = 401;
+    throw error;
+  }
+
+  return createToken(user, "access");
+}
+
 async function createUser(user) {
   // 1. 입력받은 이메일이 이미 사용중인지 확인한다.
   const existedUser = await userRepository.findByEmail(user.email);
@@ -80,4 +92,5 @@ export default {
   updateUser,
   login,
   createToken,
+  refreshToken,
 };
